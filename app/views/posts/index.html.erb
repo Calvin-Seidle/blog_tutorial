@@ -1,9 +1,9 @@
 <% @posts.each do |post| %>
-	<div class="post_wrapper">
+	<div class="well">
 		<h2 class="title"> <%= link_to post.title, post %></h2>
 		<p class="date"> <%= post.created_at.strftime("%d %B %Y") %></p>
 		<% if post.comments.any? %>
-		<p date="date"> <%= post.comments.count %> Comment(s) | <%= link_to 'View Comments', post %></p>
+		<p date="date"> <%= post.comments.count %> Comment(s) | <%= link_to 'View Comments', post, class: "text-info" %></p>
 		<% end %>
 	</div>
 <% end %>

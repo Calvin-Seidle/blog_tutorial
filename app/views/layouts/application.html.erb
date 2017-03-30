@@ -9,53 +9,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="sidebar">
-	<div id="logo">
-	<%= link_to root_path do %>
-		<%= image_tag "logo.svg" %>
-	<% end %>
+  <div class="container-fluid">
+ 	<%= render 'layouts/nav' %>
+ 	<div class="container">
+		<div id="main_content">
+			<div id="header">
+				<% if current_page?(root_path) %>
+					<p>All Posts</p>
+				<% elsif current_page?(about_path) %>
+					<p>About</p>
+				<% else %>
+					<%= link_to "Back to All Posts", root_path %>
+				<% end %>
+			</div>
+
+			<% flash.each do |name, msg| %>
+				<%= content_tag(:div, class: "alert") %>
+			<% end %>
+
+			<%= yield %> 
+		</div>
 	</div>
-	<ul>
-		<li class="category">Website</li>
-		<li> <%= link_to "Blog", root_path %> </li>
-		<li> <%= link_to "About", about_path %></li>
-	</ul>	
-
-	<ul>
-		<li class="category">Social </li>
-		<li><a href="#">Facebook</a> </li>
-		<li><a href="#">Twitter</a> </li>
-		<li><a href="#">LinkedIn</a> </li>
-		<li><a href="mailto:calvin@littlepig.cc">Email</a> </li>
-	</ul>
-
-	<p class="sign_in"> Admin Login</p>
-</div>
-
-<div id="main_content">
-	<div id="header">
-	<% if current_page?(root_path) %>
-		<p>All Posts</p>
-	<% elsif current_page?(about_path) %>
-		<p>About</p>
-	<% else %>
-		<%= link_to "Back to All Posts", root_path %>
-	<% end %>
-			
-	<div class="buttons">
-		<%= link_to "New Post", new_post_path, class: "button" %>
-		<button class="button">Log Out</button>
-	</div>
-</div>
-
-<% flash.each do |name, msg| %>
-	<%= content_tag(:div, class: "alert") %>
-<% end %>
-
-<%= yield %> 
-</div>
-
-
-
+  </div>
 </body>
 </html>
