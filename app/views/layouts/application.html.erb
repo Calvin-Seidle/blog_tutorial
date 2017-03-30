@@ -11,7 +11,7 @@
 <body>
   <div class="container-fluid">
  	<%= render 'layouts/nav' %>
- 	<div class="container">
+ 	<div class="container padding">
 		<div id="main_content">
 			<div id="header">
 				<% if current_page?(root_path) %>
@@ -23,9 +23,17 @@
 				<% end %>
 			</div>
 
-			<% flash.each do |name, msg| %>
-				<%= content_tag(:div, class: "alert") %>
-			<% end %>
+	<% if notice %>	
+	  <div class="alert alert-info alert-dismissable">
+	    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	    <strong><span class="notice"><%= notice %></span></strong> 
+	  </div> 
+	<% elsif alert %>
+	  <div class="alert alert-info alert-dismissable">
+	    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	    <strong><span class="alert"><%= alert %></span></strong> 
+	  </div>
+	<% end %> 
 
 			<%= yield %> 
 		</div>
