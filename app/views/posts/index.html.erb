@@ -3,7 +3,7 @@
 		<h2 class="title"> <%= link_to post.title, post %></h2>
 		<p class="date"> <%= post.created_at.strftime("%d %B %Y") %></p>
 		<% if post.comments.any? %>
-		<p date="date"> <%= link_to post.comments.count %> Comment(s)</p>
+		<p date="date"> <%= post.comments.count %> Comment(s) | <%= link_to 'View Comments', post %></p>
 		<% end %>
 	</div>
 <% end %>
